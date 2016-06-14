@@ -28,7 +28,7 @@ body {
     cursor: pointer;
 }
 
-navbar .links-container {
+.navbar .links-container {
      display: table;
      position: absolute;
      top: 0;
@@ -39,7 +39,7 @@ navbar .links-container {
      text-decoration: none;
  }
  
- .links-container .navbar-link {
+ .links-container .navbar-link {h
      display: table-cell;
      position: relative;
      height: 100%;

@@ -29,6 +29,21 @@ var albumPicasso = {
      ]
  };
  
+ var albumMegadeth = {
+     title: 'Dystopia',
+     artist: 'Megadeth',
+     label: 'Thrash metal',
+     year: '2016',
+     albumArtUrl: 'assets/images/album_covers/dystopia.jpg',
+     songs: [
+         { title: 'The Threat Is Real', duration: '4:22' },
+         { title: 'Dystopia', duration: '5:00' },
+         { title: 'Fatal Illusion', duration: '4:16'},
+         { title: 'Death from Within', duration: '4:48' },
+         { title: 'Bullet to the Brain', duration: '4:29'}
+     ]
+ };
+ 
   var createSongRow = function(songNumber, songName, songLength) {
      var template =
         '<tr class="album-view-song-item">'
@@ -41,32 +56,60 @@ var albumPicasso = {
      return template;
  };
  
+ 
+ 
   var setCurrentAlbum = function(album) {
-     // #1
+     
      var albumTitle = document.getElementsByClassName('album-view-title')[0];
      var albumArtist = document.getElementsByClassName('album-view-artist')[0];
      var albumReleaseInfo = document.getElementsByClassName('album-view-release-info')[0];
      var albumImage = document.getElementsByClassName('album-cover-art')[0];
      var albumSongList = document.getElementsByClassName('album-view-song-list')[0];
  
-     // #2
+     
      albumTitle.firstChild.nodeValue = album.title;
+     
      albumArtist.firstChild.nodeValue = album.artist;
      albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
      albumImage.setAttribute('src', album.albumArtUrl);
- 
-     // #3
+     
+     
+    	albumTitle.addEventListener('click', function(){
+     	   albumToggle(album.title);
+     	});
+   
+     
      albumSongList.innerHTML = '';
  
-     // #4
+     
      for (var i = 0; i < album.songs.length; i++) {
          albumSongList.innerHTML += createSongRow(i + 1, album.songs[i].title, album.songs[i].duration);
      }
- };
+     
+ }; 
+
  
  window.onload = function() {
-     setCurrentAlbum(albumPicasso);
+     setCurrentAlbum(albumPicasso);  
  };
+ 
+ var albumToggle = function (albumtitle){
+ 	if(albumtitle===albumPicasso.title){
+ 		setCurrentAlbum(albumMegadeth);
+ 	}
+ 	else if(albumtitle===albumMegadeth.title) {
+ 		setCurrentAlbum(albumMarconi);
+ 	} 
+ 	else {
+ 		setCurrentAlbum(albumPicasso);
+ 	}
+ 		
+ };
+ 
+ 
+ 
+ 
+ 
  
  
  

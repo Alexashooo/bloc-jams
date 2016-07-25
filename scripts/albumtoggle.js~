@@ -1,0 +1,3 @@
+var albumTitleToggle.addEventListener('click', function(){
+ 	      //setCurrentAlbum(albumMegadeth);
+ }));

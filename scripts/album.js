@@ -68,16 +68,9 @@ var albumPicasso = {
  
      
      albumTitle.firstChild.nodeValue = album.title;
-     
      albumArtist.firstChild.nodeValue = album.artist;
      albumReleaseInfo.firstChild.nodeValue = album.year + ' ' + album.label;
      albumImage.setAttribute('src', album.albumArtUrl);
-     
-     
-    	albumTitle.addEventListener('click', function(){
-     	   albumToggle(album.title);
-     	});
-   
      
      albumSongList.innerHTML = '';
  
@@ -90,10 +83,16 @@ var albumPicasso = {
 
  
  window.onload = function() {
-     setCurrentAlbum(albumPicasso);  
+     setCurrentAlbum(albumPicasso);
+     var albumTitle = document.getElementsByClassName('album-view-title')[0];
+     albumTitle.addEventListener('click', function(){
+     	   albumToggle(albumTitle.innerHTML);
+     	   
+     	});  
  };
  
  var albumToggle = function (albumtitle){
+ 	console.log(albumtitle);
  	if(albumtitle===albumPicasso.title){
  		setCurrentAlbum(albumMegadeth);
  	}

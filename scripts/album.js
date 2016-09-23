@@ -74,18 +74,43 @@ var playButtonTemplate = '<a class="album-song-button"><span class="ion-play"></
 
 var currentlyPlayingSong = null;
 
- window.onload = function() {
+window.onload = function() {
+
      setCurrentAlbum(albumPicasso);
-     
+    
      var findParentByClassName = function(element, targetClass) {
         if (element) {
-            var currentParent = element.parentElement;
-            while (currentParent.className != targetClass && currentParent.className !== null) {
-            currentParent = currentParent.parentElement;
+            var idCheck = false;
+            var all = document.getElementsByTagName("*");
+            classCheck = false;
+
+            while(classCheck === false) {
+                for (var i=0, max=all.length; i < max; i++) {
+                    if(all[i].className === targetClass){
+                       classCheck = true;
+                    }
+                }
             }
-        return currentParent;
-        }
-     };
+
+            if(classCheck){
+                var currentParent = element.parentElement;
+                while (currentParent.className != targetClass && currentParent.className !== null) {
+                    currentParent = currentParent.parentElement;           
+                }
+
+               if(currentParent.className === targetClass){
+                  return currentParent;
+               }
+              else  {
+                   alert("Parent is not found");
+              }
+           }
+           else {
+               alert("Element with that ID does not exists");
+           }  
+     }
+
+   }
      
    var getSongItem = function(element) {
     switch (element.className) {

@@ -104,9 +104,20 @@ var updateSeekBarWhileSongPlays = function() {
              var seekBarFillRatio = this.getTime() / this.getDuration();
              var $seekBar = $('.seek-control .seek-bar');
              updateSeekPercentage($seekBar, seekBarFillRatio);
+             var timer = buzz.toTimer(currentSoundFile.getTime()); 
+             setCurrentTimeInPlayerBar(timer);
          });
+        
      }
  };
+
+
+var setCurrentTimeInPlayerBar = function(currentTime) {
+    var  $tempTime = $(".seek-control .current-time");
+    $tempTime.text(currentTime);   
+}
+
+
 
 var updateSeekPercentage = function($seekBar, seekBarFillRatio) {
     var offsetXPercent = seekBarFillRatio * 100;

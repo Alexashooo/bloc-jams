@@ -4,11 +4,11 @@
         '<tr class="album-view-song-item">'
       + '  <td class="song-item-number" data-song-number="' + songNumber + '">' + songNumber + '</td>'
       + '  <td class="song-item-title">' + songName + '</td>'
-      + '  <td class="song-item-duration">' + songLength + '</td>'
+      + '  <td class="song-item-duration">' + buzz.toTimer(songLength) + '</td>'
       + '</tr>'
       ;
- 
    var $row = $(template);
+      
       
    var clickHandler = function() {
         var songNumber = parseInt($(this).attr('data-song-number'));
@@ -105,7 +105,7 @@ var updateSeekBarWhileSongPlays = function() {
              var $seekBar = $('.seek-control .seek-bar');
              updateSeekPercentage($seekBar, seekBarFillRatio);
              var timer = buzz.toTimer(currentSoundFile.getTime()); 
-             setCurrentTimeInPlayerBar(timer);
+             setCurrentTimeInPlayerBar(timer); 
          });
         
      }
@@ -115,6 +115,12 @@ var updateSeekBarWhileSongPlays = function() {
 var setCurrentTimeInPlayerBar = function(currentTime) {
     var  $tempTime = $(".seek-control .current-time");
     $tempTime.text(currentTime);   
+}
+
+
+var setTotalTimeInPlayerBar = function(totalTime) {
+    var  $tempTotalTime = $(".seek-control .total-time");
+    $tempTotalTime.text(totalTime);   
 }
 
 
@@ -181,8 +187,11 @@ var updatePlayerBarSong = function() {
     $('.currently-playing .artist-name').text(currentAlbum.artist);
     $('.currently-playing .artist-song-mobile').text(currentSongFromAlbum.title + " - " + currentAlbum.artist);
     $('.main-controls .play-pause').html(playerBarPauseButton);
-
+    var timer = buzz.toTimer(currentSongFromAlbum.duration); 
+    setTotalTimeInPlayerBar(timer);
 };
+
+
 
 var nextSong = function() {
     
